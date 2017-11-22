@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtEmail;
     private EditText edtSenha;
+    private TextView tvAbreCadastro;
     private Button btnLogar;
     private FirebaseAuth autenticacao;
     private Usuarios usuarios;
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         edtEmail = (EditText) findViewById(R.id.editEmail);
         edtSenha = (EditText) findViewById(R.id.editSenha);
+        tvAbreCadastro = (TextView) findViewById(R.id.tvAbreCadastro);
         btnLogar = (Button) findViewById(R.id.btnLogar);
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        tvAbreCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abreCadastroUsuario();
             }
         });
     }
@@ -68,6 +78,11 @@ public class LoginActivity extends AppCompatActivity {
     public void abrirTelaPrincipal(){
         Intent intentAbrirTelaPrincipal = new Intent(LoginActivity.this, PrincipalActivity.class);
         startActivity(intentAbrirTelaPrincipal);
+    }
+
+    public void abreCadastroUsuario(){
+        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(intent);
     }
 
 }
